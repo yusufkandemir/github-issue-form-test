@@ -25,10 +25,10 @@ body:
       label: To Reproduce
       description: Steps to reproduce the behavior.
       value: |
-        Go to the provided reproduction link
-        Click on '....'
-        Scroll down to '....'
-        See error
+        1. Go to the provided reproduction link
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
     validations:
       required: true
   - type: input
