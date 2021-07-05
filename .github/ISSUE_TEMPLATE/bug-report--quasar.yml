@@ -70,6 +70,8 @@ body:
       label: Quasar info output
       description: Please run [`quasar info` command](https://quasar.dev/quasar-cli/commands-list#info), then copy and paste the output.
       render: shell
+    validations:
+      required: true
   - type: textarea
     id: logs
     attributes:
