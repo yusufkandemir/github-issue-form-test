@@ -13,6 +13,25 @@ body:
     validations:
       required: true
   - type: input
+    id: repro-link
+    attributes:
+      label: Codepen/jsFiddle/Codesandbox
+      description: Fork a [Codepen](codepen.quasar.dev) or a [jsFiddle](jsfiddle.quasar.dev) or a [Codesandbox](codesandbox.quasar.dev) and hit save then copy-paste the link here.
+    validations:
+      required: true
+  - type: textarea
+    id: repro-description
+    attributes:
+      label: To Reproduce
+      description: Steps to reproduce the behavior.
+      value: |
+        Go to the provided reproduction link
+        Click on '....'
+        Scroll down to '....'
+        See error
+    validations:
+      required: true
+  - type: input
     id: q-version
     attributes:
       label: Quasar Version
