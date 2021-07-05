@@ -22,7 +22,7 @@ body:
   - type: input
     id: q-app-version
     attributes:
-      label: `@quasar/app` Version
+      label: "`@quasar/app` Version"
       description: What version of `@quasar/app` package are you running?
   - type: dropdown
     id: modes
