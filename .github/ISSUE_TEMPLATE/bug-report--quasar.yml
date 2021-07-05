@@ -20,7 +20,7 @@ body:
   - type: textarea
     id: repro-description
     attributes:
-      label: To Reproduce
+      label: How to reproduce?
       description: Steps to reproduce the behavior.
       value: |
         1. Go to the provided reproduction link
