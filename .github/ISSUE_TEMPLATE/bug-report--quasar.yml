@@ -1,6 +1,5 @@
 name: Bug report (Quasar v2)
 description: Create a report to help us improve
-title: '[Bug]: '
 labels: ['bug']
 
 body:
@@ -31,9 +30,10 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: modes
+    id: areas
     attributes:
-      label: Mark the areas in which you see the problem on.
+      label: Areas
+      description: Mark the areas in which you see the problem on.
       multiple: true
       options:
         - Quasar CLI
@@ -54,7 +54,8 @@ body:
   - type: dropdown
     id: browsers
     attributes:
-      label: Mark the platforms/browsers in which you see the problem on.
+      label: Platforms/Browsers
+      description: Mark the platforms/browsers in which you see the problem on. _If you select `Other`, please explain it in `Additional context` section._
       multiple: true
       options:
         - Firefox
@@ -64,6 +65,7 @@ body:
         - iOS
         - Android
         - Electron
+        - Other
   - type: textarea
     id: q-info
     attributes:
