@@ -15,7 +15,7 @@ body:
   - type: input
     id: repro-link
     attributes:
-      label: Codepen/jsFiddle/Codesandbox
+      label: Codepen/jsFiddle/Codesandbox Link
       description: Fork a [Codepen](codepen.quasar.dev) or a [jsFiddle](jsfiddle.quasar.dev) or a [Codesandbox](codesandbox.quasar.dev) and hit save then copy-paste the link here.
     validations:
       required: true
