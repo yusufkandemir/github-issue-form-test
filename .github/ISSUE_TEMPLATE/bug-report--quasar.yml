@@ -15,7 +15,7 @@ body:
     id: repro-link
     attributes:
       label: Codepen/jsFiddle/Codesandbox Link
-      description: Fork a [Codepen](codepen.quasar.dev) or a [jsFiddle](jsfiddle.quasar.dev) or a [Codesandbox](codesandbox.quasar.dev) and hit save then copy-paste the link here.
+      description: Fork a [Codepen](https://codepen.quasar.dev) or a [jsFiddle](https://jsfiddle.quasar.dev) or a [Codesandbox](https://codesandbox.quasar.dev) and hit save then copy-paste the link here.
     validations:
       required: true
   - type: textarea
