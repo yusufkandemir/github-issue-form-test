@@ -8,8 +8,7 @@ body:
     id: what-happened
     attributes:
       label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
+      description: Also, what did you expect to happen?
     validations:
       required: true
   - type: input
@@ -31,37 +30,31 @@ body:
         4. See the error
     validations:
       required: true
-  - type: input
-    id: q-version
-    attributes:
-      label: Quasar Version
-      description: What version of `quasar` package are you running?
-    validations:
-      required: true
-  - type: input
-    id: q-app-version
-    attributes:
-      label: "@quasar/app Version"
-      description: What version of `@quasar/app` package are you running?
   - type: dropdown
     id: modes
     attributes:
-      label: Which build mode(s) are you seeing the problem on?
+      label: Mark the areas in which you see the problem on.
       multiple: true
       options:
-        - SPA
-        - SSR
-        - PWA
-        - Electron
-        - Cordova
-        - Capacitor
-        - BEX
+        - Quasar CLI
+        - Components/Directives/Plugins
+        - Quasar Extras
+        - SPA Mode
+        - SSR Mode
+        - PWA Mode
+        - Electron Mode
+        - Cordova Mode
+        - Capacitor Mode
+        - BEX Mode
+        - TypeScript Support
+        - Icon Genie CLI
+        - App Extension API
     validations:
       required: true
   - type: dropdown
     id: browsers
     attributes:
-      label: Which platform(s)/browser(s) are you seeing the problem on?
+      label: Mark the platforms/browsers in which you see the problem on.
       multiple: true
       options:
         - Firefox
@@ -71,8 +64,12 @@ body:
         - iOS
         - Android
         - Electron
-    validations:
-      required: true
+  - type: textarea
+    id: q-info
+    attributes:
+      label: Quasar info output
+      description: Please run [`quasar info` command](https://quasar.dev/quasar-cli/commands-list#info), then copy and paste the output.
+      render: shell
   - type: textarea
     id: logs
     attributes:
