@@ -1,5 +1,5 @@
 name: Bug report (Quasar v2)
-description: Create a report to help us improve
+description: Create a bug report to help us improve
 labels: ['🐞 bug', '🔝 Qv2']
 
 body:
@@ -12,6 +12,11 @@ body:
         So, if you are using another version, just seeking help, or want to submit a feature request, please return back and choose a more suitable option from the list. 
 
         Also, please search your issue on the repo and make sure it does not already exist.
+
+        Please fill out the form correctly according to the instructions, try to be as clear as possible, and provide as much as details you could provide, in order for our team to understand and resolve the issue easier and faster.
+        Unclear or lacking information often results in issues to get resolved with high delays or even get closed.
+
+        Thanks for your understanding, we truly appreciate your effort to fill out this form!
   - type: textarea
     id: what-happened
     attributes:
@@ -29,15 +34,18 @@ body:
     id: repro-link
     attributes:
       label: Codepen/jsFiddle/Codesandbox Link
-      description: Fork a [Codepen](https://codepen.quasar.dev) or a [jsFiddle](https://jsfiddle.quasar.dev) or a [Codesandbox](https://codesandbox.quasar.dev) and hit save then copy-paste the link here.
+      description: |
+        Fork a [Codepen](https://codepen.quasar.dev) or a [jsFiddle](https://jsfiddle.quasar.dev) or a [Codesandbox](https://codesandbox.quasar.dev) and hit save then copy-paste the link here.
+        _You can provide a GitHub repo only as a last resort, keep in mind that it will be prioritized less as it makes the repro process slower_
     validations:
       required: true
+      # TODO: Validate the URL by using GitHub Actions, Probot, etc.
   - type: textarea
     id: repro-description
     attributes:
       label: How to reproduce?
       description: Steps to reproduce the behavior.
-      value: |
+      placeholder: |
         1. Go to the provided reproduction link
         2. Click on '....'
         3. Scroll down to '....'
@@ -79,6 +87,7 @@ body:
         - BEX Mode
         - TypeScript Support
         - App Extension API
+        # TODO: Consider creating a separate issue template for Icon Genie CLI as most of the info requested may not be relevant
         - Icon Genie CLI (@quasar/icongenie)
     validations:
       required: true
@@ -101,7 +110,9 @@ body:
     id: q-info
     attributes:
       label: Quasar info output
-      description: Please run [`quasar info` command](https://quasar.dev/quasar-cli/commands-list#info), then copy and paste the output.
+      description: |
+        Please run [`quasar info` command](https://quasar.dev/quasar-cli/commands-list#info), then copy and paste the output.
+        _This will be automatically formatted into code, so no need for backticks._
       render: shell
     # TODO: Validate the format by using GitHub Actions, Probot, etc.
     # TODO: Make this required if the flavour is Quasar CLI, by using GitHub Actions, Probot, etc.
@@ -111,7 +122,9 @@ body:
     id: logs
     attributes:
       label: Relevant log output
-      description: Please copy and paste any relevant log output. _This will be automatically formatted into code, so no need for backticks._
+      description: |
+        Please copy and paste any relevant log output.
+        _This will be automatically formatted into code, so no need for backticks._
       render: shell
   - type: textarea
     id: additional-context
