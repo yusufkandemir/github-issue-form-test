@@ -45,14 +45,30 @@ body:
     validations:
       required: true
   - type: dropdown
+    id: flavour
+    attributes:
+      label: Flavour
+      description: Choose the Quasar flavour you are using.
+      options:
+        - Quasar CLI
+        - UMD
+        - Vite Plugin
+        - Vue CLI Plugin
+    validations:
+      required: true
+  - type: dropdown
     id: areas
     attributes:
       label: Areas
       description: Mark the areas in which you see the problem on.
       multiple: true
       options:
-        - Quasar CLI
-        - Components/Directives/Plugins
+        - Quasar CLI Commands/Configuration
+        - Components
+        - Directives
+        - Plugins
+        - Composables
+        - Style & Identity
         - Quasar Extras
         - SPA Mode
         - SSR Mode
