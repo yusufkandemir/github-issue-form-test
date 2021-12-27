@@ -1,6 +1,6 @@
 name: Bug report (Quasar v2)
 description: Create a report to help us improve
-labels: ['bug']
+labels: ['🐞 bug', '🔝 Qv2']
 
 body:
   - type: textarea
