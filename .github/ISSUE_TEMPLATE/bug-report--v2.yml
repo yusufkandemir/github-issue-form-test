@@ -103,8 +103,10 @@ body:
       label: Quasar info output
       description: Please run [`quasar info` command](https://quasar.dev/quasar-cli/commands-list#info), then copy and paste the output.
       render: shell
-    validations:
-      required: true
+    # TODO: Validate the format by using GitHub Actions, Probot, etc.
+    # TODO: Make this required if the flavour is Quasar CLI, by using GitHub Actions, Probot, etc.
+    # Consider adding separate controls to select important versions such as quasar, @quasar/app, vite, etc. to also respect the other flavours
+    # or add just the 'quasar' version(to cover UMD), then evolve `quasar info` command to cover most/all cases, and make people use `npx quasar info` for the environment and package information
   - type: textarea
     id: logs
     attributes:
