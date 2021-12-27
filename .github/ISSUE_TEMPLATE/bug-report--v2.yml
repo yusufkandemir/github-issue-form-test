@@ -48,28 +48,28 @@ body:
     id: flavour
     attributes:
       label: Flavour
-      description: Choose the Quasar flavour you are using.
+      description: Choose the Quasar flavour you are using. _The names between parentheses indicate the package names if applicable._
       options:
-        - Quasar CLI
+        - Quasar CLI (@quasar/cli, @quasar/app)
         - UMD
-        - Vite Plugin
-        - Vue CLI Plugin
+        - Vite Plugin (@quasar/vite-plugin)
+        - Vue CLI Plugin (vue-cli-plugin-quasar)
     validations:
       required: true
   - type: dropdown
     id: areas
     attributes:
       label: Areas
-      description: Mark the areas in which you see the problem on.
+      description: Mark the areas in which you see the problem on. _The names between parentheses indicate the package names if applicable._
       multiple: true
       options:
-        - Quasar CLI Commands/Configuration
-        - Components
-        - Directives
-        - Plugins
-        - Composables
-        - Style & Identity
-        - Quasar Extras
+        - Quasar CLI Commands/Configuration (@quasar/cli, @quasar/app)
+        - Components (quasar)
+        - Directives (quasar)
+        - Plugins (quasar)
+        - Composables (quasar)
+        - Style & Identity (quasar)
+        - Quasar Extras (@quasar/extras)
         - SPA Mode
         - SSR Mode
         - PWA Mode
@@ -78,8 +78,8 @@ body:
         - Capacitor Mode
         - BEX Mode
         - TypeScript Support
-        - Icon Genie CLI
         - App Extension API
+        - Icon Genie CLI (@quasar/icongenie)
     validations:
       required: true
   - type: dropdown
