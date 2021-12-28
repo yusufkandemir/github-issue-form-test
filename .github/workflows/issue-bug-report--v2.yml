@@ -31,10 +31,10 @@ jobs:
 
             if (issueModel.flavour) {
               const flavourLabelMap = {
-                'Quasar CLI': 'flavour/quasar-cli'
-                'UMD': 'flavour/umd'
-                'Vite Plugin': 'flavour/vite-plugin'
-                'Vue CLI Plugin': 'flavour/vue-cli-plugin'
+                'Quasar CLI': 'flavour/quasar-cli',
+                'UMD': 'flavour/umd',
+                'Vite Plugin': 'flavour/vite-plugin',
+                'Vue CLI Plugin': 'flavour/vue-cli-plugin',
               };
 
               const flavour = processValue(issueModel.flavour);
