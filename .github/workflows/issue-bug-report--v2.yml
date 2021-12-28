@@ -1,0 +1,88 @@
+name: Process v2 Bug Report
+on:
+  issues:
+    types:
+      - opened
+jobs:
+  issue-automation:
+    if: >-
+      ${{
+        contains(github.event.issue.labels.*.name, '🔝 Qv2') &&
+        contains(github.event.issue.labels.*.name, 'kind/bug')
+      }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: stefanbuck/github-issue-parser@v2
+        id: issue-parser
+        with:
+          template-path: .github/ISSUE_TEMPLATE/bug-report--v2.yml
+
+      - uses: actions/github-script@v5
+        env:
+          ISSUE_MODEL: ${{ steps.issue-parser.outputs.jsonString }}
+        with:
+          script: |
+            const issueModel = JSON.parse(process.env.ISSUE_MODEL);
+            const labelsToAdd = [];
+            // Strip out the extra information like package names in between parantheses, e.g. 'Quasar CLI (@quasar/cli, @quasar/app)' -> 'Quasar CLI'
+            const processValue = value => value.replace(/\s?\(.+\)$/, '');
+
+            if (issueModel.flavour) {
+              const flavourLabelMap = {
+                'Quasar CLI': 'flavour/quasar-cli'
+                'UMD': 'flavour/umd'
+                'Vite Plugin': 'flavour/vite-plugin'
+                'Vue CLI Plugin': 'flavour/vue-cli-plugin'
+              };
+
+              const flavour = processValue(issueModel.flavour);
+              const flavourLabel = flavourLabelMap[flavour];
+
+              if (flavourLabel) {
+                labelsToAdd.push(flavourLabel);
+              }
+            }
+
+            if (issueModel.areas) {
+              const areasLabelMap = {
+                'Quasar CLI Commands/Configuration': 'area/cli',
+                'Components': 'area/components',
+                'Directives': 'area/directives',
+                'Plugins': 'area/plugins',
+                'Composables': 'area/composables',
+                'Style & Identity': 'area/style',
+                'Quasar Extras': 'area/extras',
+                'TypeScript Support': 'area/typescript',
+                'App Extension API': 'area/app-ext',
+                'Icon Genie CLI': 'area/icongenie',
+
+                'SPA Mode': 'mode/spa',
+                'SSR Mode': 'mode/ssr',
+                'PWA Mode': 'mode/pwa',
+                'Electron Mode': 'mode/electron',
+                'Cordova Mode': 'mode/cordova',
+                'Capacitor Mode': 'mode/capacitor',
+                'BEX Mode': 'mode/bex',
+              };
+
+              const areaLabels = issueModel.areas
+                .split(', ')
+                .map(rawArea => {
+                  const area = processValue(rawArea);
+                  return areasLabelMap[area];
+                })
+                .filter(Boolean);
+
+              labelsToAdd.push(...areaLabels);
+            }
+
+            if (labelsToAdd.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: labelsToAdd
+              });
+            }

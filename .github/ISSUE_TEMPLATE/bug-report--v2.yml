@@ -1,6 +1,6 @@
 name: Bug report (Quasar v2)
 description: Create a bug report to help us improve
-labels: ['🐞 bug', '🔝 Qv2']
+labels: ['kind/bug', '🔝 Qv2']
 
 body:
   - type: markdown
@@ -72,12 +72,19 @@ body:
       multiple: true
       options:
         - Quasar CLI Commands/Configuration (@quasar/cli, @quasar/app)
+
         - Components (quasar)
         - Directives (quasar)
         - Plugins (quasar)
         - Composables (quasar)
         - Style & Identity (quasar)
+
         - Quasar Extras (@quasar/extras)
+        - TypeScript Support
+        - App Extension API
+        # TODO: Consider creating a separate issue template for Icon Genie CLI as most of the info requested may not be relevant
+        - Icon Genie CLI (@quasar/icongenie)
+
         - SPA Mode
         - SSR Mode
         - PWA Mode
@@ -85,10 +92,6 @@ body:
         - Cordova Mode
         - Capacitor Mode
         - BEX Mode
-        - TypeScript Support
-        - App Extension API
-        # TODO: Consider creating a separate issue template for Icon Genie CLI as most of the info requested may not be relevant
-        - Icon Genie CLI (@quasar/icongenie)
     validations:
       required: true
   - type: dropdown
