@@ -22,6 +22,17 @@ jobs:
       - uses: actions/github-script@v5
         env:
           ISSUE_MODEL: ${{ steps.issue-parser.outputs.jsonString }}
+          INVALID_REPRO_MESSAGE: |
+            Hi @${{ github.event.issue.user.login }}! 👋
+
+            It looks like you provided an invalid or unsupported reproduction URL.
+            Do not use any service other than [Codepen](https://codepen.io), [jsFiddle](https://jsfiddle.net), [Codesandbox](https://codesandbox.io), and [GitHub](https://github.com).
+            Make sure the URL you provided is correct and reachable. You can test it by visiting it in a private tab, another device, etc.
+            Please **edit your original post above** and provide a valid reproduction URL as explained.
+
+            Without a proper reproduction, your issue will have to get closed.
+
+            Thank you for your collaboration. 👏
         with:
           script: |
             const issueModel = JSON.parse(process.env.ISSUE_MODEL);
@@ -78,11 +89,54 @@ jobs:
               labelsToAdd.push(...areaLabels);
             }
 
+            try {
+              const reproURL = new URL(issueModel['repro-url']);
+
+              if (reproURL.protocol !== 'https:') {
+                throw Error();
+              }
+
+              switch(reproURL.hostname) {
+                case 'codepen.io':
+                  if (/^\/.+\/(pen|project)\/.+$/.test(reproURL.pathname)) {
+                    break;
+                  }
+                case 'jsfiddle.net':
+                  if (/^\/.+\/.+$/.test(reproURL.pathname)) {
+                    break;
+                  }
+                case 'codesandbox.io':
+                  if (/^\/s\/.+$/.test(reproURL.pathname)) {
+                    break;
+                  }
+                case 'github.com':
+                  if (/^\/.+\/.+$/.test(reproURL.pathname)) {
+                    labelsToAdd.push('bug/1-hard-to-reproduce');
+                    break;
+                  }
+                default:
+                  throw new Error();
+              }
+
+              labelsToAdd.push('bug/1-repro-available');
+            } catch {
+              labelsToAdd.push('bug/0-needs-info');
+            }
+
             if (labelsToAdd.length > 0) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.issue.number,
                 labels: labelsToAdd
+              });
+            }
+
+            if (labelsToAdd.includes('bug/0-needs-info')) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: process.env.INVALID_REPRO_MESSAGE
               });
             }
