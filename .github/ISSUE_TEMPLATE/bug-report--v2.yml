@@ -2,6 +2,7 @@ name: Bug report (Quasar v2)
 description: Create a bug report to help us improve
 labels: ['kind/bug', '🔝 Qv2']
 
+# Note: Do NOT use commas(,) in options with 'multiple: true', the issue processing workflow won't be able to label it
 body:
   - type: markdown
     attributes:
@@ -58,7 +59,7 @@ body:
       label: Flavour
       description: Choose the Quasar flavour you are using. _The names between parentheses indicate the package names if applicable._
       options:
-        - Quasar CLI (@quasar/cli, @quasar/app)
+        - Quasar CLI (@quasar/cli | @quasar/app)
         - UMD
         - Vite Plugin (@quasar/vite-plugin)
         - Vue CLI Plugin (vue-cli-plugin-quasar)
@@ -71,7 +72,7 @@ body:
       description: Mark the areas in which you see the problem on. _The names between parentheses indicate the package names if applicable._
       multiple: true
       options:
-        - Quasar CLI Commands/Configuration (@quasar/cli, @quasar/app)
+        - Quasar CLI Commands/Configuration (@quasar/cli | @quasar/app)
 
         - Components (quasar)
         - Directives (quasar)
