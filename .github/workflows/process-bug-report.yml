@@ -1,15 +1,11 @@
-name: Process v2 Bug Report
+name: Process Bug Report
 on:
   issues:
     types:
       - opened
 jobs:
   issue-automation:
-    if: >-
-      ${{
-        contains(github.event.issue.labels.*.name, '🔝 Qv2') &&
-        contains(github.event.issue.labels.*.name, 'kind/bug')
-      }}
+    if: ${{ contains(github.event.issue.labels.*.name, 'kind/bug') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,7 +13,8 @@ jobs:
       - uses: stefanbuck/github-issue-parser@v2
         id: issue-parser
         with:
-          template-path: .github/ISSUE_TEMPLATE/bug-report--v2.yml
+          # Mimic ternary operator, see https://github.com/actions/runner/issues/409#issuecomment-752775072
+          template-path: .github/ISSUE_TEMPLATE/bug-report--${{ contains(github.event.issue.labels.*.name, 'Qv1') && 'v1' || 'v2' }}.yml
 
       - uses: actions/github-script@v5
         env:
