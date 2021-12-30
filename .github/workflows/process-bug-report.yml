@@ -7,6 +7,8 @@ jobs:
   issue-automation:
     if: ${{ contains(github.event.issue.labels.*.name, 'kind/bug') }}
     runs-on: ubuntu-latest
+    env:
+      TEMPLATE_VERSION: ${{ contains(github.event.issue.labels.*.name, 'Qv1') && 'v1' || 'v2' }}
     steps:
       - uses: actions/checkout@v2
 
@@ -14,7 +16,7 @@ jobs:
         id: issue-parser
         with:
           # Mimic ternary operator, see https://github.com/actions/runner/issues/409#issuecomment-752775072
-          template-path: .github/ISSUE_TEMPLATE/bug-report--${{ contains(github.event.issue.labels.*.name, 'Qv1') && 'v1' || 'v2' }}.yml
+          template-path: .github/ISSUE_TEMPLATE/bug-report--${{ env.TEMPLATE_VERSION }}.yml
 
       - uses: actions/github-script@v5
         env:
@@ -32,6 +34,9 @@ jobs:
             Thank you for your collaboration. 👏
         with:
           script: |
+            // Use it to differentiate the behavior between different template versions, if needed
+            // const templateVersion = process.env.TEMPLATE_VERSION;
+
             const issueModel = JSON.parse(process.env.ISSUE_MODEL);
             const labelsToAdd = [];
             // Strip out the extra information like package names in between parantheses, e.g. 'Quasar CLI (@quasar/cli, @quasar/app)' -> 'Quasar CLI'
